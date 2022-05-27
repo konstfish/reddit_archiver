@@ -18,6 +18,14 @@ exports.getImages = function(sub, callback){
     });
 }
 
+exports.getSavedImages = function(callback){
+    const query = {saved: 1}
+
+    Images.find(query, function(err, task) {
+        callback(err, task);
+    });
+}
+
 exports.get3Images = function(sub, callback){
     const query = {subreddit: sub}
 

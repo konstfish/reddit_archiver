@@ -1,12 +1,27 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/saved">Saved</router-link> |
     <router-link :to="{ name: 'posts', params: { sub: 'me_irl' } }" >Posts</router-link>
   </nav>
 
   <router-view/>
+
+  <div>
+    Made with <heart-outline style="color: red"></heart-outline> <a href="https://github.com/konstfish">@konstfish</a>
+  </div>
 </template>
+
+<script>
+import { HeartOutline } from 'mdue';
+
+export default {
+  components: {
+    HeartOutline,
+  },
+}
+</script>
+
 
 <style>
 #app {
@@ -42,5 +57,4 @@ a.router-link-exact-active {
 svg{
   vertical-align: middle;
 }
-
 </style>

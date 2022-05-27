@@ -55,6 +55,19 @@ router.post('/getImages', (req, res) => {
   }
 });
 
+router.get('/getSavedImages', (req, res) => {
+  try{
+
+    controller.getSavedImages((err, task) => {
+      if(err) throw err;
+      res.json(task);
+    })
+  }catch(e){
+    console.log(e);
+    res.status(400).json({success: false, msg: e})
+  }
+});
+
 router.post('/getSampleImages', (req, res) => {
   try{
     const subreddit_name = req.body.subreddit;

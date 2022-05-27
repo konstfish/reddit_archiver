@@ -25,13 +25,12 @@ limit = 300
 with open('reddit_config.json', 'r') as f:
   data = json.load(f)
 
-
 reddit = praw.Reddit(
-    client_id=data.client_id,
-    client_secret=data.client_secret,
-    password=data.password,
-    user_agent=data.user_agent,
-    username=data.username,
+    client_id=data["client_id"],
+    client_secret=data["client_secret"],
+    password=data["password"],
+    user_agent=data["user_agent"],
+    username=data["username"],
 )
 
 if(reddit.user.me() == "fISHICAL_"):

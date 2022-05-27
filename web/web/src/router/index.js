@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PostsView from '../views/PostsView.vue'
-import AboutView from '../views/AboutView.vue'
+import SavedView from '../views/SavedView.vue'
 
 const routes = [
   {
@@ -10,9 +10,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: AboutView
+    path: '/saved',
+    name: 'saved',
+    component: SavedView
   },
   {
     path: '/posts/:sub',
