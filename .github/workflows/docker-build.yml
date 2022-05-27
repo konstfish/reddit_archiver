@@ -1,0 +1,20 @@
+name: Docker
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker-practice/actions-setup-docker@master
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          docker-compose build
+
+#      - name: Run
+#        run: |
+#          if [ -f docker-compose.prod.yml ]; then
+#            docker-compose --file docker-compose.prod.yml up -d
+#          fi

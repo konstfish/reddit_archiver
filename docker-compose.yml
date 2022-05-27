@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    volumes:
+      - mongodb_data_container:/data/db
+    restart: always
+
+  scraper:
+    depends_on:
+      - "mongodb_container"
+      - "rest"
+    build: ./scraper/
+    environment:
+      - TG_TOKEN=123
+    volumes:
+      - ./data_temp:/opt/data
+    links:
+      - "mongodb_container:database"
+      - "rest:rest"
+    restart: always
+
+  rest:
+    depends_on:
+      - "mongodb_container"
+    build: ./rest/
+    ports:
+      - 2701:2701
+    environment:
+      - INIT=1
+    links:
+      - "mongodb_container:database"
+    restart: always
+
+
+volumes:
+  mongodb_data_container:
