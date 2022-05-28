@@ -36,7 +36,7 @@ services:
     depends_on:
       - "mongodb_container"
       - "rest"
-    build: ./web/web/
+    build: ./web/
     ports:
       - 3000:3000
     links:

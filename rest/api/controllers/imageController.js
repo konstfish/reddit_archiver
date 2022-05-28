@@ -41,7 +41,7 @@ exports.getImage = function(query, callback){
 }
 
 exports.countImages = function(callback){
-  Subreddit.count({}, function(err, task) {
+  Images.count({}, function(err, task) {
     callback(err, task);
   });
 }
@@ -49,7 +49,7 @@ exports.countImages = function(callback){
 exports.countImage = function(sub, callback){
     const query = {subreddit: sub}
 
-    Subreddit.count(query, function(err, task) {
+    Images.count(query, function(err, task) {
         callback(err, task);
     });
 }

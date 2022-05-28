@@ -2,7 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/saved">Saved</router-link> |
-    <router-link :to="{ name: 'posts', params: { sub: 'me_irl' } }" >Posts</router-link>
+    <router-link to="/stats" >Stats</router-link>
   </nav>
 
   <router-view/>

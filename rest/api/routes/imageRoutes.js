@@ -112,7 +112,7 @@ router.post('/getImage', (req, res) => {
   }
 });
 
-router.post('/countImage', (req, res) => {
+router.get('/countImage', (req, res) => {
   try{
     const subreddit_name = req.body.subreddit;
 
@@ -126,7 +126,7 @@ router.post('/countImage', (req, res) => {
   }
 });
 
-router.post('/countImages', (req, res) => {
+router.get('/countImages', (req, res) => {
   try{
     controller.countImages((err, task) => {
       if(err) throw err;
