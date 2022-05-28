@@ -68,4 +68,16 @@ router.post('/favSubreddit', (req, res) => {
   }
 });
 
+router.get('/countSubreddits', (req, res) => {
+  try{
+    controller.countSubreddits((err, task) => {
+      if(err) throw err;
+      res.json(task);
+    })
+  }catch(e){
+    console.log(e);
+    res.status(400).json({success: false, msg: e})
+  }
+});
+
 module.exports = router;

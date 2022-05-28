@@ -39,3 +39,17 @@ exports.getImage = function(query, callback){
         callback(err, task);
     });
 }
+
+exports.countImages = function(callback){
+  Subreddit.count({}, function(err, task) {
+    callback(err, task);
+  });
+}
+
+exports.countImage = function(sub, callback){
+    const query = {subreddit: sub}
+
+    Subreddit.count(query, function(err, task) {
+        callback(err, task);
+    });
+}

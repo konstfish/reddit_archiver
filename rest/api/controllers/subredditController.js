@@ -32,3 +32,10 @@ exports.favSubreddit = function(sub, fav, callback){
     callback(err, task);
   });
 }
+
+exports.countSubreddits = function(callback){
+  Subreddit.count({}, function(err, task) {
+    callback(err, task);
+  });
+}
+

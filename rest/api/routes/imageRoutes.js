@@ -112,4 +112,30 @@ router.post('/getImage', (req, res) => {
   }
 });
 
+router.post('/countImage', (req, res) => {
+  try{
+    const subreddit_name = req.body.subreddit;
+
+    controller.countImage(subreddit_name, (err, task) => {
+      if(err) throw err;
+      res.json(task);
+    })
+  }catch(e){
+    console.log(e);
+    res.status(400).json({success: false, msg: e})
+  }
+});
+
+router.post('/countImages', (req, res) => {
+  try{
+    controller.countImages((err, task) => {
+      if(err) throw err;
+      res.json(task);
+    })
+  }catch(e){
+    console.log(e);
+    res.status(400).json({success: false, msg: e})
+  }
+});
+
 module.exports = router;
