@@ -32,6 +32,18 @@ services:
       - "mongodb_container:database"
     restart: always
 
+  web:
+    depends_on:
+      - "mongodb_container"
+      - "rest"
+    build: ./web/web/
+    ports:
+      - 3000:3000
+    links:
+      - "rest:rest"
+    volumes:
+      - ./data_temp:/usr/share/nginx/html/data_temp
+    restart: always
 
 volumes:
   mongodb_data_container:
