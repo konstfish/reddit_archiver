@@ -12,7 +12,7 @@ services:
       - "rest"
     build: ./scraper/
     environment:
-      - TG_TOKEN=123
+      - IN_DOCKER_CONATINER=1
     volumes:
       - ./data_temp:/opt/data
     links:

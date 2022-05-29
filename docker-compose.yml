@@ -12,7 +12,7 @@ services:
       - "rest"
     build: ./scraper/
     environment:
-      - IN_DOCKER_CONATINER=123
+      - IN_DOCKER_CONATINER=1
     volumes:
       #- data_temp_container:/opt/data
       - ./data_temp:/opt/data

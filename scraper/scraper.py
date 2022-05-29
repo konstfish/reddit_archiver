@@ -14,7 +14,7 @@ from PIL import Image
 
 url = 'http://rest:2701/'
 
-limit = 300
+limit = 100
 
 image_types = ["jpeg", "jpg", "gif", "png"]
 
@@ -70,7 +70,7 @@ def main():
 
             data={
                 'subreddit': item.subreddit.display_name,
-                'created_utc': item.created_utc,
+                'created_utc': datetime.utcnow(),
                 'title': item.title,
                 'file': norm(item.title) + str(item.created_utc) + "." + type_ending,
                 'nsfw': 1 if item.over_18 == True else 0,
