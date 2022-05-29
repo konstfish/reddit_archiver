@@ -15,7 +15,7 @@ exports.getImages = function(sub, callback){
 
     Images.find(query, function(err, task) {
         callback(err, task);
-    });
+    }).sort({created_utc: 1});;
 }
 
 exports.getSavedImages = function(callback){
@@ -23,7 +23,7 @@ exports.getSavedImages = function(callback){
 
     Images.find(query, function(err, task) {
         callback(err, task);
-    });
+    }).sort({created_utc: 1});
 }
 
 exports.get3Images = function(sub, callback){

@@ -20,13 +20,13 @@ export default {
     async getData() {
       try {
         const response = await this.$http.get(
-          "http://10.0.0.15:2701/sub/countSubreddits"
+          "/sub/countSubreddits"
         );
 
         this.subredditCount = response.data;
 
         const response2 = await this.$http.get(
-          "http://10.0.0.15:2701/image/countImages"
+          "/image/countImages"
         );
 
         this.imageCount = response2.data;

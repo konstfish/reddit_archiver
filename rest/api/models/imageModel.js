@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var ImageSchema = new Schema({
   created_utc: {
-    type: String,
+    type: Date,
     required: true 
   },
   subreddit: {

@@ -12,9 +12,8 @@ services:
       - "rest"
     build: ./scraper/
     environment:
-      - IN_DOCKER_CONATINER=123
+      - TG_TOKEN=123
     volumes:
-      #- data_temp_container:/opt/data
       - ./data_temp:/opt/data
     links:
       - "mongodb_container:database"
@@ -43,7 +42,6 @@ services:
     links:
       - "rest:rest"
     volumes:
-      #- data_temp_container:/usr/share/nginx/html/data_temp
       - ./data_temp:/usr/share/nginx/html/data_temp
     restart: always
 

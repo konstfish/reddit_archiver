@@ -10,9 +10,9 @@
               </span>
             </div>
             <a :href="'/data_temp/' + item.subreddit + '/' + item.file" >
-              <img  :src="'/data_temp/' + item.subreddit + '/' + item.file" 
-                    :class="item.nsfw ? 'nsfw' : 'default'" 
-                    :style="'width: 300px;'" />
+              <img v-lazy="{src: '/data_temp/' + item.subreddit + '/' + item.file }" 
+                  :class="item.nsfw ? 'nsfw' : 'default'" 
+                  :style="'width: 300px;'" />
             </a>
           </div>
         </template>
@@ -39,7 +39,7 @@ export default {
     async getData() {
       try {
         const response = await this.$http.get(
-          "http://10.0.0.15:2701/image/getSavedImages", {
+          "http://127.0.0.1:2701/image/getSavedImages", {
           }
         );
 

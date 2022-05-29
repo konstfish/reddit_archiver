@@ -12,9 +12,14 @@
               </span>
             </div>
             <a :href="'/data_temp/' + item.subreddit + '/' + item.file" >
-              <img  :src="'/data_temp/' + item.subreddit + '/' + item.file" 
+              <img v-lazy="{src: '/data_temp/' + item.subreddit + '/' + item.file }" 
+                  :class="item.nsfw ? 'nsfw' : 'default'" 
+                  :style="'width: 300px;'" />
+               <!-- 
+                <img  :src="'/data_temp/' + item.subreddit + '/' + item.file" 
                     :class="item.nsfw ? 'nsfw' : 'default'" 
                     :style="'width: 300px;'" />
+              -->
             </a>
           </div>
         </template>
@@ -41,7 +46,7 @@ export default {
     async getData() {
       try {
         const response = await this.$http.post(
-          "http://10.0.0.15:2701/image/getImages", {
+          "http://localhost:2701/image/getImages", {
               subreddit: this.$route.params.sub
           }
         );

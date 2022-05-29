@@ -9,6 +9,7 @@ import requests
 import json
 import time
 import os, sys
+from datetime import datetime
 from PIL import Image
 
 url = 'http://rest:2701/'
@@ -16,6 +17,11 @@ url = 'http://rest:2701/'
 limit = 300
 
 image_types = ["jpeg", "jpg", "gif", "png"]
+
+if os.environ.get('IN_DOCKER_CONTAINER'):
+    image_folder = "/opt/data/"
+else:
+    image_folder = "../data_temp/"
 
 with open('reddit_config.json', 'r') as f:
   data = json.load(f)
@@ -78,9 +84,9 @@ def main():
 
             if(data["subreddit"] not in response.text):
                 if type_ending in image_types:
-                    os.makedirs("../data_temp/" + data["subreddit"], exist_ok=True)
+                    os.makedirs(image_folder + data["subreddit"], exist_ok=True)
                     
-                    filename = "../data_temp/" + data["subreddit"] + "/"  + data["file"]
+                    filename = image_folder + data["subreddit"] + "/"  + data["file"]
 
                     r = requests.get(item.url, allow_redirects=True)
                     open(filename, 'wb').write(r.content)
