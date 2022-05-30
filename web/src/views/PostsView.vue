@@ -46,7 +46,7 @@ export default {
     async getData() {
       try {
         const response = await this.$http.post(
-          "http://localhost:2701/image/getImages", {
+          "/image/getImages", {
               subreddit: this.$route.params.sub
           }
         );

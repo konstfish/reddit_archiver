@@ -14,14 +14,21 @@ from PIL import Image
 
 url = 'http://rest:2701/'
 
-limit = 100
+limit = 300
 
 image_types = ["jpeg", "jpg", "gif", "png"]
+image_folder = "/opt/data/"
 
-if os.environ.get('IN_DOCKER_CONTAINER'):
+in_docker_container = os.getenv('IN_DOCKER_CONATINER', 0)
+
+print(in_docker_container)
+
+if in_docker_container:
     image_folder = "/opt/data/"
 else:
     image_folder = "../data_temp/"
+
+print("[!] saving to", image_folder)
 
 with open('reddit_config.json', 'r') as f:
   data = json.load(f)
@@ -70,7 +77,6 @@ def main():
 
             data={
                 'subreddit': item.subreddit.display_name,
-                'created_utc': datetime.utcnow(),
                 'title': item.title,
                 'file': norm(item.title) + str(item.created_utc) + "." + type_ending,
                 'nsfw': 1 if item.over_18 == True else 0,
@@ -99,6 +105,7 @@ def main():
 
                     data["width"] = width
                     data["height"] = height
+                    data["created_utc"] = datetime.utcnow()
 
                     response = requests.post((url + 'image/addImage'),
                     data=data,

@@ -31,7 +31,7 @@
   0%{ transform: rotate(-4deg); }
   25% { transform: rotate(2deg); }
   80%{ transform: rotate(2deg); }
-  100%{  transform: rotate(-4deg);  }
+  100%{  transform: rotate(-4deg);}
 }
 
 @keyframes rotate2 {
@@ -125,7 +125,7 @@ export default {
     async getData() {
       try {
         const response = await this.$http.get(
-          "http://localhost:2701/sub/getSubreddits"
+          "/sub/getSubreddits"
         );
 
         this.posts = response.data;
@@ -145,7 +145,7 @@ export default {
     async favSubreddit(subreddit, fav){
       try{
         await this.$http.post(
-          "http://localhost:2701/sub/favSubreddit", {
+          "/sub/favSubreddit", {
               subreddit: subreddit,
               fav: fav,
           }
@@ -160,7 +160,7 @@ export default {
 
     async getSubredditPreview(subreddit){
       const response = await this.$http.post(
-        "http://localhost:2701/image/getSampleImages", {
+        "/image/getSampleImages", {
             subreddit: subreddit,
         });
 

@@ -39,7 +39,7 @@ export default {
     async getData() {
       try {
         const response = await this.$http.get(
-          "http://127.0.0.1:2701/image/getSavedImages", {
+          "/image/getSavedImages", {
           }
         );
 
