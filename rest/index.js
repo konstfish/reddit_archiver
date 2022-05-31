@@ -7,7 +7,7 @@ var express = require('express'),
   bodyParser = require('body-parser');
 
 // sudo docker exec -it reddit_archiver_mongodb_container_1 /bin/bash
-//  sudo docker exec -it reddit_archiver_mongodb_container_1 /usr/bin/mongo reddit --eval "db.dropDatabase();"
+// sudo docker exec -it reddit_archiver_mongodb_container_1 /usr/bin/mongo reddit --eval "db.dropDatabase();"
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://database:27017/reddit', { useNewUrlParser: true, useUnifiedTopology: true });
 

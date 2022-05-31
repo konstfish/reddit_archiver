@@ -1,23 +1,9 @@
 version: '3.7'
 services:
   mongodb_container:
-    image: mongo:latest
+    image: mongo:4.4.6
     volumes:
       - mongodb_data_container:/data/db
-    restart: always
-
-  scraper:
-    depends_on:
-      - "mongodb_container"
-      - "rest"
-    build: ./scraper/
-    environment:
-      - IN_DOCKER_CONATINER=1
-    volumes:
-      - ./data_temp:/opt/data
-    links:
-      - "mongodb_container:database"
-      - "rest:rest"
     restart: always
 
   rest:
@@ -32,6 +18,20 @@ services:
       - "mongodb_container:database"
     restart: always
 
+  scraper:
+    depends_on:
+      - "mongodb_container"
+      - "rest"
+    build: ./scraper/
+    environment:
+      - IN_DOCKER_CONATINER=1
+    volumes:
+      - data_temp_container:/opt/data
+    links:
+      - "mongodb_container:database"
+      - "rest:rest"
+    restart: always
+
   web:
     depends_on:
       - "mongodb_container"
@@ -42,7 +42,7 @@ services:
     links:
       - "rest:rest"
     volumes:
-      - ./data_temp:/usr/share/nginx/html/data_temp
+      - data_temp_container:/usr/share/nginx/html/data_temp
     restart: always
 
 volumes:

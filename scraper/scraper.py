@@ -12,23 +12,22 @@ import os, sys
 from datetime import datetime
 from PIL import Image
 
-url = 'http://rest:2701/'
-
 limit = 300
 
 image_types = ["jpeg", "jpg", "gif", "png"]
-image_folder = "/opt/data/"
 
 in_docker_container = os.getenv('IN_DOCKER_CONATINER', 0)
 
-print(in_docker_container)
-
 if in_docker_container:
     image_folder = "/opt/data/"
+    url = 'http://rest:2701/'
 else:
     image_folder = "../data_temp/"
+    url = 'http://127.0.0.1:2701/'
 
-print("[!] saving to", image_folder)
+
+print("[!] database url:", url)
+print("[!] saving to:", image_folder)
 
 with open('reddit_config.json', 'r') as f:
   data = json.load(f)

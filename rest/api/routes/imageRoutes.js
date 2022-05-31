@@ -89,12 +89,10 @@ router.post('/getImage', (req, res) => {
     const file = req.body.file;
     const nsfw = req.body.nsfw;
     const saved = req.body.saved;
-    const date = req.body.created_utc;
     const permalink = req.body.permalink;
 
     const query = {
         subreddit: subreddit_name,
-        created_utc: date,
         title: title,
         file: file,
         nsfw: nsfw,

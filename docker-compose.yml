@@ -6,21 +6,6 @@ services:
       - mongodb_data_container:/data/db
     restart: always
 
-  scraper:
-    depends_on:
-      - "mongodb_container"
-      - "rest"
-    build: ./scraper/
-    environment:
-      - IN_DOCKER_CONATINER=1
-    volumes:
-      - data_temp_container:/opt/data
-      #- ./data_temp:/opt/data
-    links:
-      - "mongodb_container:database"
-      - "rest:rest"
-    restart: always
-
   rest:
     depends_on:
       - "mongodb_container"
@@ -33,19 +18,32 @@ services:
       - "mongodb_container:database"
     restart: always
 
-  web:
-    depends_on:
-      - "mongodb_container"
-      - "rest"
-    build: ./web/
-    ports:
-      - 3321:3000
-    links:
-      - "rest:rest"
-    volumes:
-      - data_temp_container:/usr/share/nginx/html/data_temp
-      #- ./data_temp:/usr/share/nginx/html/data_temp
-    restart: always
+#  scraper:
+#    depends_on:
+#      - "mongodb_container"
+#      - "rest"
+#    build: ./scraper/
+#    environment:
+#      - IN_DOCKER_CONATINER=1
+#    volumes:
+#      - ./data_temp:/opt/data
+#    links:
+#      - "mongodb_container:database"
+#      - "rest:rest"
+#    restart: always
+
+#  web:
+#    depends_on:
+#      - "mongodb_container"
+#      - "rest"
+#    build: ./web/
+#    ports:
+#      - 3321:3000
+#    links:
+#      - "rest:rest"
+#    volumes:
+#      - ./data_temp:/usr/share/nginx/html/data_temp
+#    restart: always
 
 volumes:
   mongodb_data_container:
