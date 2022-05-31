@@ -13,7 +13,7 @@ run:
 deploy:
 	docker context use $(DEPLOY_ENV)
 	docker-compose --file docker-compose.prod.yml build
-	docker-compose up -d
+	docker-compose --file docker-compose.prod.yml up -d
 	docker context use $(DEFAULT_ENV)
 
 rm:
