@@ -26,24 +26,24 @@ services:
     environment:
       - IN_DOCKER_CONATINER=1
     volumes:
-      - ./data_temp:/opt/data
+      - data_temp_container:/opt/data
     links:
       - "mongodb_container:database"
       - "rest:rest"
     restart: always
 
-#  web:
-#    depends_on:
-#      - "mongodb_container"
-#      - "rest"
-#    build: ./web/
-#    ports:
-#      - 3321:3000
-#    links:
-#      - "rest:rest"
-#    volumes:
-#      - ./data_temp:/usr/share/nginx/html/data_temp
-#    restart: always
+  web:
+    depends_on:
+      - "mongodb_container"
+      - "rest"
+    build: ./web/
+    ports:
+      - 3321:3000
+    links:
+      - "rest:rest"
+    volumes:
+      - data_temp_container:/usr/share/nginx/html/data_temp
+    restart: always
 
 volumes:
   mongodb_data_container:

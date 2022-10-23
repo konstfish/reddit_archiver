@@ -12,9 +12,3 @@ jobs:
       - name: Build
         run: |
           docker-compose build
-
-#      - name: Run
-#        run: |
-#          if [ -f docker-compose.prod.yml ]; then
-#            docker-compose --file docker-compose.prod.yml up -d
-#          fi
